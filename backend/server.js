@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
   res.json({ message: "hello world" });
 });
 
-require("./src/routes/transaction.routes")(app);
+require("./src/routes/user.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
