@@ -1,18 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./index.scss";
-import App from "./components/App";
-import { store } from "./store/index";
+import Accounts from "./pages/accounts";
+import NavBar from "./components/navBar";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <NavBar />
+      <Switch>
+        <Route path="/accounts">
+          <Accounts />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

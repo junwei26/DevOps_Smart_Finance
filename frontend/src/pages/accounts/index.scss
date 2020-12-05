@@ -1,0 +1,11 @@
+@use "../../utils/colors";
+
+.container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.title {
+    font-size: 30px;
+    color: colors.$aquamarine;
+}
