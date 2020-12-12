@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./index.scss";
 import Accounts from "./pages/accounts";
 import NavBar from "./components/navBar";
+import Settings from "./pages/settings";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +13,9 @@ ReactDOM.render(
       <Switch>
         <Route path="/accounts">
           <Accounts />
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
       </Switch>
     </BrowserRouter>
