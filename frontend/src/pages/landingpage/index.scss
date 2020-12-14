@@ -1,0 +1,28 @@
+@use "../../utils/colors";
+
+.landing-page {
+    text-align: center;
+    background: url("../../images/landingpage.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.welcome {
+    font-size: 60px;
+    color: colors.$aquamarine;
+    padding-top: 100px;
+}
+
+.subtitle {
+    font-size: 40px;
+    color: white;
+    padding-top: 50px;
+}
+
+.description {
+    font-size: 25px;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 30%;
+}
