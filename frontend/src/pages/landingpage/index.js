@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
 
-const Homepage = () => {
+const LandingPage = () => {
   return (
     <div className="landing-page">
       <div className="contents">
@@ -16,4 +16,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default LandingPage;
