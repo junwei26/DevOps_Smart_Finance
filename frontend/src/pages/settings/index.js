@@ -7,20 +7,29 @@ const Settings = () => {
   return (
     <div className="container">
       <div className="title">Settings</div>
+      <div className="image">
+        <img
+          className="image-frame"
+          src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+        />
+        <input className="file-upload" type="file" name="file" />
+      </div>
       <Form>
-        <div>
-          <Form.Control type="text" name="username" placeholder="Enter your username" />
+        <div className="fields-form">
+          <div className="field">
+            <Form.Control type="text" name="username" placeholder="Enter your username" />
+          </div>
+          <div className="field">
+            <Form.Control type="text" name="oldPassword" placeholder="Enter your old password" />
+          </div>
+          <div className="field">
+            <Form.Control type="text" name="newPassword" placeholder="Enter your new password" />
+          </div>
+          <div className="field">
+            <Form.Control type="text" name="repPassword" placeholder="Repeat your new password" />
+          </div>
         </div>
-        <div>
-          <Form.Control type="text" name="oldPassword" placeholder="Enter your old password" />
-        </div>
-        <div>
-          <Form.Control type="text" name="newPassword" placeholder="Enter your new password" />
-        </div>
-        <div>
-          <Form.Control type="text" name="repeatPassword" placeholder="Repeat your new password" />
-        </div>
-        <div>
+        <div className="submit-button">
           <Button variant="success" type="submit">
             Submit
           </Button>
