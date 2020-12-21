@@ -5,7 +5,7 @@ import Accounts from "./pages/accounts";
 import NavBar from "./components/navBar";
 import Login from "./pages/login";
 import { AuthContext } from "./authcontext";
-import ProtectedRoute from "./components/protectedroute";
+import ProtectedRoute from "./protectedroute";
 
 const RouteControl = () => {
   return (
