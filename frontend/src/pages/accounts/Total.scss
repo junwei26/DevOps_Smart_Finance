@@ -1,0 +1,45 @@
+@use "../../utils/colors";
+
+.container_total {
+    text-align: center;
+    border: solid white;
+    border-radius: 15px;
+}
+
+.subContainer_total {
+    display: flex;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.total_balance {
+    position: relative;
+    left: 200px;
+    top: 0px;
+    font-size: 50px;
+    color: green;
+}
+
+.monthly_change {
+    position: fixed;
+    left: 870px;
+    top: 487px;
+    font-size: 50px;
+    color: red;
+}
+
+.total_header_balance{
+    position: relative;
+    left: 200px;
+    top: 0px;
+    font-size: 25px;
+    color: white;
+}
+
+.total_header_monthly_change{
+    position: fixed;
+    left: 870px;
+    font-size: 25px;
+    color: white;
+}
+
