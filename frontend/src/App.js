@@ -7,22 +7,17 @@ import Login from "./pages/login";
 import { AuthContext } from "./authcontext";
 import ProtectedRoute from "./components/protectedroute";
 
-const RouteControl = () => {
-  return (
-    <Switch>
-      <Route path="/login" component={Login} />
-      <ProtectedRoute path="/" component={Accounts} />
-      <ProtectedRoute path="/accounts" component={Accounts} />
-    </Switch>
-  );
-};
 const App = () => {
   const [isLoggedIn, setLogin] = useState(false);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, setLogin }}>
       <NavBar />
-      <RouteControl />
+      <Switch>
+        <Route path="/login" component={Login} />
+        <ProtectedRoute path="/" component={Accounts} />
+        <ProtectedRoute path="/accounts" component={Accounts} />
+      </Switch>
     </AuthContext.Provider>
   );
 };
