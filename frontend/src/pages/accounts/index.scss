@@ -5,21 +5,129 @@
     margin-top: 40px;
 }
 
-.title {
-    font-size: 30px;
-    color: colors.$aquamarine;
+.subheader-container {
+    display: flex;
+    text-align: center;
 }
 
-.nameTitle {
+.subheader-name-title {
     position: relative;
-    right: 400px;
+    right: 0px;
+    top: -4px;
     font-size: 25px;
     color: colors.$aquamarine;
 }
 
-.budgetTitle {
+.subheader-budget-title {
     position: relative;
-    right: 400px;
+    right: -280px;
+    top: -4px;
     font-size: 25px;
     color: colors.$aquamarine;
+}
+
+.subheader-savings-title {
+    position: relative;
+    left: 470px;
+    top: -4px;
+    font-size: 25px;
+    color: colors.$aquamarine;
+}
+
+.subheader-type-title {
+    position: relative;
+    left: 700px;
+    top: -4px;
+    font-size: 25px;
+    color: colors.$aquamarine;
+}
+
+.amounts-container {
+    display: grid;
+    grid-template-columns: 345px 270px 320px 200px;
+    text-align: left;
+    box-sizing: border-box;
+    width: 100%;
+    border: solid white;
+    border-radius: 15px;
+}
+
+.amounts-name-of-cca {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    position: relative;
+    left: 5px;
+    top: 0px;
+    font-size: 20px;
+    color: white;
+}
+
+.amounts-budget-amount {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    position: relative;
+    font-size: 20px;
+    color: white;
+}
+
+.amounts-savings-amount {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    position: relative;
+    font-size: 20px;
+    color: white;
+}
+
+.amounts-type-of-amount {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    position: relative;
+    font-size: 20px;
+    color: white;
+}
+
+//calculation of balance and monthly change
+.total-container {
+    text-align: left;
+    border: solid white;
+    border-radius: 15px;
+}
+
+.total-sub-container{
+    display: grid;
+    grid-template-columns: 180px 520px;
+    text-align: left;
+    border-radius: 15px;
+}
+
+.total-balance {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    position: relative;
+    font-size: 50px;
+    color: green;
+}
+
+.total-monthly-change {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    position: relative;
+    font-size: 50px;
+    color: red;
+}
+
+.total-header-balance{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    position: relative;
+    font-size: 25px;
+    color: white;
+}
+
+.total-header-monthly-change{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    position: relative;
+    font-size: 25px;
+    color: white;
 }
