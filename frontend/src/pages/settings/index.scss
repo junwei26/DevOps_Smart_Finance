@@ -1,0 +1,44 @@
+@use "../../utils/colors";
+
+.container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.fields-form {
+    padding-left: 40%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.image {
+    float: left;
+    width: 35%;
+    height: 40%;
+    margin-top: 70px;
+    padding-bottom: 3%;
+    background-color: white;
+}
+
+.file-upload {
+    margin-top: 20px;
+}
+
+.image-frame {
+    float: top;
+    width: 100%;
+    height: 100%;
+}
+
+.field {
+    padding-top: 30px;
+}
+
+.submit-button {
+    padding-top: 25px;
+}
+
+.title {
+    font-size: 30px;
+    color: colors.$aquamarine;
+}
