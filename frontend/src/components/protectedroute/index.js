@@ -11,7 +11,9 @@ const ProtectedRoute = (props) => {
     <Redirect to="/" />
   );
 };
-
+ProtectedRoute.defaultProps = {
+  exact: true,
+};
 ProtectedRoute.propTypes = {
   component: PropTypes.any,
   path: PropTypes.string,
