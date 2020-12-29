@@ -42,22 +42,22 @@ exports.create = (req, res) => {
 
 // Fetch all Accounts of specified User
 exports.getAll = (req, res) => {
-  if (!req.body.user) {
+  if (!req.query.user) {
     return res.status(400).send({ message: "Username cannot be empty!" });
   }
 
-  User.findOne({ user: req.body.user })
+  User.findOne({ user: req.query.user })
     .then((data) => {
       if (!data) {
         return res
           .status(404)
-          .send({ message: "User with username " + req.body.user + " not found." });
+          .send({ message: "User with username " + req.query.user + " not found." });
       }
       res.send(data.accounts);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Error retrieving Accounts for User with username " + req.body.user,
+        message: err.message || "Error retrieving Accounts for User with username " + req.query.user,
       });
     });
 };
