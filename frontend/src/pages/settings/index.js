@@ -4,64 +4,34 @@ import Button from "react-bootstrap/Button";
 import "./index.scss";
 import axios from "axios";
 
-// const Settings = () => {
-//   const [username, setUsername] = useState("");
-//   const onSubmit = () => {
-//     alert(username);
-//   };
-
-//   return (
-//     <div className="container">
-//       <div className="title">Settings</div>
-//       <div className="image">
-//         <img
-//           className="image-frame"
-//           src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
-//         />
-//         <input className="file-upload" type="file" name="file" />
-//       </div>
-//       <Form>
-//         <div className="fields-form">
-//           <div className="field">
-//             <Form.Control
-//               type="text"
-//               name="username"
-//               placeholder="Enter your username"
-//               value={username}
-//               onChange={(e) => setUsername(e.target.value)}
-//             />
-//           </div>
-//           <div className="field">
-//             <Form.Control type="text" name="oldPassword" placeholder="Enter your old password" />
-//           </div>
-//           <div className="field">
-//             <Form.Control type="text" name="newPassword" placeholder="Enter your new password" />
-//           </div>
-//           <div className="field">
-//             <Form.Control type="text" name="repPassword" placeholder="Repeat your new password" />
-//           </div>
-//         </div>
-//         <div className="submit-button">
-//           <Button variant="success" type="submit" onClick={() => onSubmit()}>
-//             Submit
-//           </Button>
-//         </div>
-//       </Form>
-//     </div>
-//   );
-// };
-
-// export default Settings;
-
 export default class Settings extends Component {
   constructor(props) {
     super(props);
+
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeNewPassword = this.onChangeNewPassword.bind(this);
+    this.onChangeRepeatPassword = this.onChangeRepeatPassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       username: "",
+      password: "",
+      newPassword: "",
+      repeatPassword: "",
     };
+  }
+
+  onChangePassword(e) {
+    this.setState({ password: e.target.value });
+  }
+
+  onChangeNewPassword(e) {
+    this.setState({ newPassword: e.target.value });
+  }
+
+  onChangeRepeatPassword(e) {
+    this.setState({ repeatPassword: e.target.value });
   }
 
   onChangeUsername(e) {
@@ -70,15 +40,22 @@ export default class Settings extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const url = "http://localhost:8080/api/users?user=" + String(this.state.username);
     axios
-      .get("http://localhost:8080/")
+      .get(url)
       .then((res) => {
-        alert(res.data);
+        console.log("no error");
+        console.log(res.data);
+        if (this.state.newPassword == this.state.repeatPassword) {
+          alert("Change password");
+        } else {
+          alert("New passwords and repeat passwords do not match. Please try again!");
+        }
       })
       .catch((error) => {
-        alert(error);
+        console.log(error);
+        alert("Username does not exist! Please try again!");
       });
-    // alert(this.state.username);
   }
 
   render() {
@@ -104,13 +81,31 @@ export default class Settings extends Component {
               />
             </div>
             <div className="field">
-              <Form.Control type="text" name="oldPassword" placeholder="Enter your old password" />
+              <Form.Control
+                type="text"
+                name="oldPassword"
+                placeholder="Enter your old password"
+                value={this.state.password}
+                onChange={this.onChangePassword}
+              />
             </div>
             <div className="field">
-              <Form.Control type="text" name="newPassword" placeholder="Enter your new password" />
+              <Form.Control
+                type="text"
+                name="newPassword"
+                placeholder="Enter your new password"
+                value={this.state.newPassword}
+                onChange={this.onChangeNewPassword}
+              />
             </div>
             <div className="field">
-              <Form.Control type="text" name="repPassword" placeholder="Repeat your new password" />
+              <Form.Control
+                type="text"
+                name="repPassword"
+                placeholder="Repeat your new password"
+                value={this.state.repeatPassword}
+                onChange={this.onChangeRepeatPassword}
+              />
             </div>
           </div>
           <div className="submit-button">
