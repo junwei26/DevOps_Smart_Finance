@@ -4,8 +4,8 @@ import { UseAuthContext } from "../../authcontext";
 import PropTypes from "prop-types";
 
 const ProtectedRoute = (props) => {
-  const { isLoggedin } = UseAuthContext();
-  return isLoggedin ? (
+  const { isLoggedIn } = UseAuthContext();
+  return isLoggedIn ? (
     <Route exact={props.exact} path={props.path} component={props.component} />
   ) : (
     <Redirect to="/" />
