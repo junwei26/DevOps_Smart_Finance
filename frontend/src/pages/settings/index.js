@@ -22,18 +22,22 @@ export default class Settings extends Component {
     };
   }
 
+  // Obtain the old password that is filled in the form
   onChangePassword(e) {
     this.setState({ password: e.target.value });
   }
 
+  // Obtain the new password that is filled in the form
   onChangeNewPassword(e) {
     this.setState({ newPassword: e.target.value });
   }
 
+  // Obtain the repeat password that is filled in the form
   onChangeRepeatPassword(e) {
     this.setState({ repeatPassword: e.target.value });
   }
 
+  // Obtain the username that is filled in the form
   onChangeUsername(e) {
     this.setState({ username: e.target.value });
   }
