@@ -38,23 +38,34 @@ export default class Settings extends Component {
     this.setState({ username: e.target.value });
   }
 
+  // todo: check if username-password is correct 
   onSubmit(e) {
     e.preventDefault();
-    const url = "http://localhost:8080/api/users?user=" + String(this.state.username);
+    const url =
+      "http://localhost:8080/api/users/delete?user=" +
+      String(this.state.username) +
+      "&pass=" +
+      String(this.state.password);
+    // const url = "http://localhost:8080/api/users?user=" + String(this.state.username);
     axios
       .get(url)
       .then((res) => {
         console.log("no error");
         console.log(res.data);
         if (this.state.newPassword == this.state.repeatPassword) {
-          alert("Change password");
+          alert("Details have been changed successfully!");
         } else {
           alert("New passwords and repeat passwords do not match. Please try again!");
         }
       })
       .catch((error) => {
-        console.log(error);
-        alert("Username does not exist! Please try again!");
+        const usernameErrorMessage = "duplicate key error collection";
+        if (error.response.data.message.includes(usernameErrorMessage)) {
+          alert("Please try another username!");
+        } else {
+          alert("Username does not exist! Please try again!");
+        }
+        console.log(error.response.data.message);
       });
   }
 
