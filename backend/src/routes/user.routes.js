@@ -10,7 +10,7 @@ module.exports = (app) => {
   router.get("/", users.findOne);
 
   // Find and update single User
-  router.get("/delete", users.findAndUpdate);
+  router.get("/update", users.findAndUpdate);
   
   app.use("/api/users", router);
 };
