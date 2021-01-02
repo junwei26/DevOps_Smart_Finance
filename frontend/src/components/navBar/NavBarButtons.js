@@ -19,7 +19,7 @@ const NavBarButtons = () => {
           <Nav.Link as={Link} to="/settings">
             Settings
           </Nav.Link>
-          <Nav.Link as={Link} to="/signout" onClick={() => setLogin(false)}>
+          <Nav.Link as={Link} to="/" onClick={() => setLogin(false)}>
             Sign Out
           </Nav.Link>
         </>
