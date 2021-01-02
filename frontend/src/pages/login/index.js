@@ -8,16 +8,27 @@ import { UseAuthContext } from "../../authcontext";
 const Login = () => {
   const { setLogin } = UseAuthContext();
   let history = useHistory();
+
+  const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
   const Authenticate = () => {
-    setLogin(true);
-    history.push("/");
+    if (email.length <= 0) {
+      alert("Email cannot be empty!");
+    } else if (!regex.test(email)) {
+      alert("Please enter valid email address!");
+    } else if (password.length <= 0) {
+      alert("Password cannot be empty!");
+    } else {
+      setLogin(true);
+      history.push("/");
+    }
   };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <div className="container">
-      <div className="title">Login Page</div>
+      <div className="title">Login</div>
       <Form>
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
