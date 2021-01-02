@@ -42,17 +42,14 @@ export default class Settings extends Component {
     this.setState({ username: e.target.value });
   }
 
-  // todo: check if username-password is correct 
+  // todo: check if username-password is correct
   onSubmit(e) {
     e.preventDefault();
     const url =
-      "http://localhost:8080/api/users/delete?user=" +
-      String(this.state.username) +
-      "&pass=" +
-      String(this.state.password);
+      "http://localhost:8080/api/users/delete?user={String(this.state.username)}&pass={String(this.state.password)}";
     axios
       .get(url)
-      .then((res) => {
+      .then(() => {
         if (this.state.newPassword == this.state.repeatPassword) {
           alert("Details have been changed successfully!");
         } else {
