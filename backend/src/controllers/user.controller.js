@@ -40,7 +40,7 @@ exports.findAndUpdate = (req, res) => {
   const filter = { user: currentUsername };
   const options = {
     new : false, 
-    upsert: true 
+    upsert: false
   };
   const updateDoc = {
     user: req.query.user,

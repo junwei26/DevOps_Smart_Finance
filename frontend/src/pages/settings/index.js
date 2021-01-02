@@ -50,12 +50,9 @@ export default class Settings extends Component {
       String(this.state.username) +
       "&pass=" +
       String(this.state.password);
-    // const url = "http://localhost:8080/api/users?user=" + String(this.state.username);
     axios
       .get(url)
       .then((res) => {
-        console.log("no error");
-        console.log(res.data);
         if (this.state.newPassword == this.state.repeatPassword) {
           alert("Details have been changed successfully!");
         } else {
@@ -69,7 +66,6 @@ export default class Settings extends Component {
         } else {
           alert("Username does not exist! Please try again!");
         }
-        console.log(error.response.data.message);
       });
   }
 
