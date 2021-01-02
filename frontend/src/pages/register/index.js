@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { UseAuthContext } from "../../authcontext";
 
-const Signup = () => {
+const Register = () => {
   const { setLogin } = UseAuthContext();
   let history = useHistory();
 
@@ -31,7 +31,7 @@ const Signup = () => {
 
   return (
     <div className="container">
-      <div className="title">Signup</div>
+      <div className="title">Register</div>
       <Form>
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
@@ -64,11 +64,11 @@ const Signup = () => {
           />
         </Form.Group>
         <Button block size="lg" type="submit" onClick={Authenticate}>
-          Sign up
+          Register
         </Button>
       </Form>
     </div>
   );
 };
 
-export default Signup;
+export default Register;
