@@ -5,24 +5,24 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { UseAuthContext } from "../../authcontext";
 
+const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+const authenticate = (email, password) => {
+  if (email.length <= 0) {
+    alert("Email cannot be empty!");
+  } else if (!regex.test(email)) {
+    alert("Please enter valid email address!");
+  } else if (password.length <= 0) {
+    alert("Password cannot be empty!");
+  } else {
+    return true;
+  }
+};
+
 const Login = () => {
   const { setLogin } = UseAuthContext();
   let history = useHistory();
 
-  const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-  const Authenticate = () => {
-    if (email.length <= 0) {
-      alert("Email cannot be empty!");
-    } else if (!regex.test(email)) {
-      alert("Please enter valid email address!");
-    } else if (password.length <= 0) {
-      alert("Password cannot be empty!");
-    } else {
-      setLogin(true);
-      history.push("/");
-    }
-  };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -50,7 +50,17 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block size="lg" type="submit" onClick={Authenticate}>
+        <Button
+          block
+          size="lg"
+          type="submit"
+          onClick={() => {
+            if (authenticate(email, password)) {
+              setLogin(true);
+              history.push("/");
+            }
+          }}
+        >
           Login
         </Button>
       </Form>
