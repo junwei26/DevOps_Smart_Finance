@@ -20,7 +20,7 @@ const Accounts = () => {
       </div>
 
       <div>
-        <button>Add Wallet</button>
+        <button className="button-design">Add Wallet</button>
       </div>
 
       <div className="total-container">

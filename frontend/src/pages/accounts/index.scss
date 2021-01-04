@@ -5,6 +5,19 @@
     margin-top: 40px;
 }
 
+.title {
+    font-size: 50px;
+    color: colors.$aquamarine;
+}
+
+.button-design{
+    margin: 25px;
+    background-color: colors.$aquamarine;
+    border: none;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
 .subheader-container {
     display: flex;
     text-align: center;
@@ -50,6 +63,7 @@
     width: 100%;
     border: solid white;
     border-radius: 15px;
+    margin: 2px;
 }
 
 .amounts-name-of-cca {
@@ -86,14 +100,13 @@
     color: white;
 }
 
-//calculation of balance and monthly change
 .total-container {
     text-align: left;
     border: solid white;
     border-radius: 15px;
 }
 
-.total-sub-container{
+.total-sub-container {
     display: grid;
     grid-template-columns: 180px 520px;
     text-align: left;
@@ -116,7 +129,7 @@
     color: red;
 }
 
-.total-header-balance{
+.total-header-balance {
     grid-column-start: 2;
     grid-column-end: 3;
     position: relative;
@@ -124,7 +137,7 @@
     color: white;
 }
 
-.total-header-monthly-change{
+.total-header-monthly-change {
     grid-column-start: 3;
     grid-column-end: 4;
     position: relative;
