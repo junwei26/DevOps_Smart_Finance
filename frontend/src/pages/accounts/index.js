@@ -1,8 +1,10 @@
 import React from "react";
 import "./index.scss";
+import { Button } from "react-bootstrap";
 
 const Accounts = () => {
   return (
+    /*prettier-ignore*/
     <div className="container">
       <div className="title">Accounts</div>
       <div className="subheader-container">
@@ -19,9 +21,12 @@ const Accounts = () => {
         <h2 className="amounts-type-of-amount"> wallet</h2>
       </div>
 
-      <div>
-        <button className="button-design">Add Wallet</button>
-      </div>
+      <Button
+        variant="btn btn-success"
+        className="button-design">
+        
+        Add Wallet
+      </Button>
 
       <div className="total-container">
         <div className="total-sub-container">
@@ -33,6 +38,7 @@ const Accounts = () => {
           <h2 className="total-monthly-change">-$300</h2>
         </div>
       </div>
+
     </div>
   );
 };

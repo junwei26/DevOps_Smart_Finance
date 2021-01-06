@@ -22,6 +22,9 @@ const NavBar = () => {
           <Nav.Link as={Link} to="/settings">
             Settings
           </Nav.Link>
+          <Nav.Link as={Link} to="/addwallets">
+            Add Wallets
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
