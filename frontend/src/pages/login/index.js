@@ -10,10 +10,13 @@ const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+
 const authenticate = (email, password) => {
   if (email.length <= 0) {
     alert("Email cannot be empty!");
+    return false;
   } else if (!regex.test(email)) {
     alert("Please enter valid email address!");
+    return false;
   } else if (password.length <= 0) {
     alert("Password cannot be empty!");
+    return false;
   } else {
     return true;
   }
