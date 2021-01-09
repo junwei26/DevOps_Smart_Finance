@@ -18,7 +18,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/login" exact component={Login} />
-        <ProtectedRoute path="/settings" component={Settings} />
+        <Route path="/settings" component={Settings} />
         <ProtectedRoute path="/accounts" component={Accounts} />
       </Switch>
     </AuthContext.Provider>

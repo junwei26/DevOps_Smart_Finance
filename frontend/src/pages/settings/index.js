@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./index.scss";
+import axios from "axios";
 
 const Settings = () => {
   const [username, onChangeUsername] = useState("");
@@ -11,7 +12,28 @@ const Settings = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // console.log("submit");
+    console.log("submit");
+    const url = `http://localhost:8080/api/users/update?user=${String(username)}&pass=${String(
+      newPassword
+    )}`;
+    if (newPassword == repeatPassword) {
+      console.log(url);
+      axios
+        .get(url)
+        .then(() => {
+          alert("Details have been changed successfully!");
+        })
+        .catch((error) => {
+          const usernameErrorMessage = "duplicate key error collection";
+          if (error.response.data.message.includes(usernameErrorMessage)) {
+            alert("Please try another username!");
+          } else {
+            alert("Username does not exist! Please try again!");
+          }
+        });
+    } else {
+      alert("New passwords and repeat passwords do not match. Please try again!");
+    }
   };
 
   return (
