@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.scss";
 import { Button } from "react-bootstrap";
+import history from "../../history";
 
 const Accounts = () => {
   return (
@@ -23,8 +24,8 @@ const Accounts = () => {
 
       <Button
         variant="btn btn-success"
-        className="button-design">
-        
+        className="button-design"
+        onClick={() => history.push('/addwallets')}>
         Add Wallet
       </Button>
 
