@@ -19,7 +19,7 @@ const NavBarButtons = () => {
           <Nav.Link as={Link} to="/settings">
             Settings
           </Nav.Link>
-          <Nav.Link as={Link} to="/signout" onClick={() => setLogin(false)}>
+          <Nav.Link as={Link} to="/" onClick={() => setLogin(false)}>
             Sign Out
           </Nav.Link>
         </>
@@ -28,8 +28,8 @@ const NavBarButtons = () => {
           <Nav.Link as={Link} to="/login">
             Login
           </Nav.Link>
-          <Nav.Link as={Link} to="/signup">
-            Signup
+          <Nav.Link as={Link} to="/register">
+            Register
           </Nav.Link>
         </>
       )}
