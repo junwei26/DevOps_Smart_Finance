@@ -5,7 +5,6 @@ import history from "../../history";
 
 const Accounts = () => {
   return (
-    /*prettier-ignore*/
     <div className="container">
       <div className="title">Accounts</div>
       <div className="subheader-container">
@@ -25,7 +24,8 @@ const Accounts = () => {
       <Button
         variant="btn btn-success"
         className="button-design"
-        onClick={() => history.push('/addwallets')}>
+        onClick={() => history.push("/addwallets")}
+      >
         Add Wallet
       </Button>
 
@@ -39,7 +39,6 @@ const Accounts = () => {
           <h2 className="total-monthly-change">-$300</h2>
         </div>
       </div>
-
     </div>
   );
 };

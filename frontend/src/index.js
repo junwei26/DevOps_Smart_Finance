@@ -19,7 +19,7 @@ ReactDOM.render(
         <Route path="/settings">
           <Settings />
         </Route>
-        <Route path="/addwallets" component={Wallets}>
+        <Route path="/addwallets">
           <Wallets />
         </Route>
       </Switch>
