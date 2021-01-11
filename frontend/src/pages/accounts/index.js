@@ -15,7 +15,7 @@ const Accounts = () => {
       </div>
 
       <div className="amounts-container">
-        <h2 className="amounts-name-of-cca">Fintech Society</h2>
+        <h2 className="amounts-name-of-cca">Fintech</h2>
         <h2 className="amounts-budget-amount">1500</h2>
         <h2 className="amounts-savings-amount">$40</h2>
         <h2 className="amounts-type-of-amount"> wallet</h2>
