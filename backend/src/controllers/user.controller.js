@@ -76,24 +76,20 @@ exports.findAndUpdate = (req, res) => {
   }
   currentUsername = "hi0";
   const filter = { user: currentUsername };
-  const options = {
-    new : false, 
-    upsert: false
-  };
   const updateDoc = {
     user: req.query.user,
     pass: req.query.pass,
   };
-  User.findOneAndUpdate(filter, updateDoc, options).then((data) => {
+  User.findOneAndUpdate(filter, updateDoc).then((data) => {
     if (!data) {
       res.status(400).send({ message: "Update unsuccessful!"});
     } else {
-      //Todo : delete orignal username
       res.send(data);
     }
   })
   .catch((err) => {
-    res.status(500).send({ message: err.message || "Error retrieving User with username " + req.query.user });
+    res.status(400).send({});
+    // res.status(500).send({ message: err.message || "Error retrieving User with username " + req.query.user });
   });
 }
 
