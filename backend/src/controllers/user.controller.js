@@ -35,16 +35,22 @@ exports.create = (req, res) => {
 
 // Find a single User with a username
 exports.findOne = (req, res) => {
-  const user = req.body.user;
+  if (!req.query.user) {
+    return res.status(400).send({ message: "Username cannot be empty!" });
+  }
 
-  User.findOne({ user: user })
+  User.findOne({ user: req.query.user })
     .then((data) => {
-      if (!data) res.status(404).send({ message: "User with username " + user + " not found." });
-      else res.send(data);
+      if (!data) {
+        return res
+          .status(404)
+          .send({ message: "User with username " + req.query.user + " not found." });
+      }
+      res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Error retrieving User with username " + user,
+        message: err.message || "Error retrieving User with username " + req.query.user,
       });
     });
 };
