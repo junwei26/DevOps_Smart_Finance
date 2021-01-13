@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import BarLoader from "react-spinners/BarLoader";
 import "./index.scss";
 import axios from "axios";
 
@@ -9,6 +10,8 @@ const Settings = () => {
   const [oldPassword, onChangeOldPassword] = useState("");
   const [newPassword, onChangeNewPassword] = useState("");
   const [repeatPassword, onChangeRepeatPassword] = useState("");
+  const [color] = useState("#ffffff");
+  let [loading, setLoading] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +23,10 @@ const Settings = () => {
       axios
         .get(url)
         .then(() => {
+          loading = true;
+          setLoading(loading);
           alert("Details have been changed successfully!");
+          loading = false;
         })
         .catch((error) => {
           console.log(error.response);
@@ -84,6 +90,7 @@ const Settings = () => {
             />
           </div>
         </div>
+        <BarLoader className="barLoader" color={color} loading={loading} size={200} />
         <div className="submit-button">
           <Button variant="success" type="submit" onClick={onSubmit}>
             Submit
