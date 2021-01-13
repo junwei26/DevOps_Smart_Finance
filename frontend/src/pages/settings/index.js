@@ -23,7 +23,8 @@ const Settings = () => {
           alert("Details have been changed successfully!");
         })
         .catch((error) => {
-          if (Object.keys(error.respose.data.message).length === 0) {
+          console.log(error.response);
+          if (error.response.status == 500) {
             alert("Please try another username!");
           } else {
             alert("Username does not exist! Please try again!");
@@ -57,7 +58,7 @@ const Settings = () => {
           </div>
           <div className="field">
             <Form.Control
-              type="text"
+              type="password"
               name="oldPassword"
               placeholder="Enter your old password"
               value={oldPassword}
@@ -66,7 +67,7 @@ const Settings = () => {
           </div>
           <div className="field">
             <Form.Control
-              type="text"
+              type="password"
               name="newPassword"
               placeholder="Enter your new password"
               value={newPassword}
@@ -75,7 +76,7 @@ const Settings = () => {
           </div>
           <div className="field">
             <Form.Control
-              type="text"
+              type="password"
               name="repPassword"
               placeholder="Repeat your new password"
               value={repeatPassword}

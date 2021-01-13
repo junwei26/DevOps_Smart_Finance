@@ -42,39 +42,8 @@ exports.findAndUpdate = (req, res) => {
   if (!req.query.pass) {
     return res.status(400).send({ message: "Password cannot be empty!" });
   }
-  currentUsername = "hi0";
-  const filter = { user: currentUsername };
-  const options = {
-    new : false, 
-    upsert: false
-  };
-  const updateDoc = {
-    user: req.query.user,
-    pass: req.query.pass,
-  };
-  User.findOneAndUpdate(filter, updateDoc, options).then((data) => {
-    if (!data) {
-      res.status(400).send({ message: "Update unsuccessful!"});
-    } else {
-      //Todo : delete orignal username
-      res.send(data);
-    }
-  })
-  .catch((err) => {
-    res.status(500).send({ message: err.message || "Error retrieving User with username " + req.query.user });
-  });
-}
-
-// Find single user and update
-exports.findAndUpdate = (req, res) => {
-  // Todo: Use a variable username. For now, stick with constant
-  if (!req.query.user) {
-    return res.status(400).send({ message: "Username cannot be empty!" });
-  }
-  if (!req.query.pass) {
-    return res.status(400).send({ message: "Password cannot be empty!" });
-  }
-  currentUsername = "hi0";
+  // currentUsername = "hi7";
+  currentUsername = req.body.user;
   const filter = { user: currentUsername };
   const updateDoc = {
     user: req.query.user,
@@ -82,14 +51,13 @@ exports.findAndUpdate = (req, res) => {
   };
   User.findOneAndUpdate(filter, updateDoc).then((data) => {
     if (!data) {
-      res.status(400).send({ message: "Update unsuccessful!"});
+      res.status(500).send({ message: "Update unsuccessful!"});
     } else {
-      res.send(data);
+      res.status(200).send(data);
     }
   })
   .catch((err) => {
-    res.status(400).send({});
-    // res.status(500).send({ message: err.message || "Error retrieving User with username " + req.query.user });
+    res.status(400).send({ message: err.message || "Error retrieving User with username " + req.query.user });
   });
 }
 
