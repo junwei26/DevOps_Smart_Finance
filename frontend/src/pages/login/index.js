@@ -3,7 +3,6 @@ import "./index.scss";
 import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { UseAuthContext } from "../../authcontext";
 
 const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -19,9 +18,8 @@ const authenticate = (email, password) => {
   }
   return false;
 };
-
+const user = "test";
 const Login = () => {
-  const { setLogin } = UseAuthContext();
   let history = useHistory();
 
   const [email, setEmail] = useState("");
@@ -57,8 +55,9 @@ const Login = () => {
           type="submit"
           onClick={() => {
             if (authenticate(email, password)) {
-              setLogin(true);
+              localStorage.setItem("currentUser", user);
               history.push("/");
+              window.location.reload(false);
             }
           }}
         >

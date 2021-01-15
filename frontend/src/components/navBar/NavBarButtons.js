@@ -1,11 +1,9 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
-import { UseAuthContext } from "../../authcontext";
 
 const NavBarButtons = () => {
-  const { isLoggedIn, setLogin } = UseAuthContext();
-
+  const isLoggedIn = localStorage.getItem("currentUser");
   return (
     <Nav className="ml-auto">
       {isLoggedIn ? (
@@ -19,7 +17,14 @@ const NavBarButtons = () => {
           <Nav.Link as={Link} to="/settings">
             Settings
           </Nav.Link>
-          <Nav.Link as={Link} to="/" onClick={() => setLogin(false)}>
+          <Nav.Link
+            as={Link}
+            to="/"
+            onClick={() => {
+              localStorage.removeItem("currentUser");
+              window.location.reload(false);
+            }}
+          >
             Sign Out
           </Nav.Link>
         </>
