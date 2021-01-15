@@ -1,29 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Switch, Route, Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
-import Accounts from "./pages/accounts";
-import NavBar from "./components/navBar";
-import Settings from "./pages/settings";
-import Wallets from "./pages/addwallets";
-import history from "./history";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router history={history}>
-      <NavBar />
-      <Switch>
-        <Route path="/accounts">
-          <Accounts />
-        </Route>
-        <Route path="/settings">
-          <Settings />
-        </Route>
-        <Route path="/addwallets">
-          <Wallets />
-        </Route>
-      </Switch>
-    </Router>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
