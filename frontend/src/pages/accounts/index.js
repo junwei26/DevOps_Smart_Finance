@@ -1,5 +1,7 @@
 import React from "react";
 import "./index.scss";
+import { Button } from "react-bootstrap";
+import history from "../../history";
 
 const Accounts = () => {
   return (
@@ -13,15 +15,19 @@ const Accounts = () => {
       </div>
 
       <div className="amounts-container">
-        <h2 className="amounts-name-of-cca">Fintech Society</h2>
+        <h2 className="amounts-name-of-cca">Fintech</h2>
         <h2 className="amounts-budget-amount">1500</h2>
         <h2 className="amounts-savings-amount">$40</h2>
         <h2 className="amounts-type-of-amount"> wallet</h2>
       </div>
 
-      <div>
-        <button className="button-design">Add Wallet</button>
-      </div>
+      <Button
+        variant="btn btn-success"
+        className="button-design"
+        onClick={() => history.push("/addwallets")}
+      >
+        Add Wallet
+      </Button>
 
       <div className="total-container">
         <div className="total-sub-container">
