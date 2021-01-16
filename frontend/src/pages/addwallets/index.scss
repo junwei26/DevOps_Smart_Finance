@@ -1,0 +1,58 @@
+@use "../../utils/colors";
+
+.addwallets-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.title {
+    font-size: 30px;
+    color: colors.$aquamarine;
+}
+
+.addwallets-field {
+    margin: 50px;
+}
+
+.addwallets-fields-form {
+    padding-left: 10%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.profile-image {
+    position: absolute;
+    float: left;
+    margin-left: -60px;
+    margin-top: -20px;
+    padding-bottom: 10%
+}
+
+.balance-image {
+    position: absolute;
+    float: left;
+    margin-left: -60px;
+    margin-top: -20px;
+    padding-bottom: 10%
+}
+
+.savings-image {
+    position: absolute;
+    float: left;
+    margin-left: -60px;
+    margin-top: -20px;
+    padding-bottom: 10%
+}
+
+.budget-image {
+    position: absolute;
+    float: left;
+    margin-left: -60px;
+    margin-top: -20px;
+    padding-bottom: 10%;
+}
+
+.size {
+    width: 70px;
+    height: 70px;
+}
