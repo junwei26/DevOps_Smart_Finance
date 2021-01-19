@@ -23,10 +23,8 @@ const Settings = () => {
       axios
         .get(url)
         .then(() => {
-          loading = true;
           setLoading(false);
           alert("Details have been changed successfully!");
-          loading = false;
         })
         .catch((error) => {
           console.log(error.response);

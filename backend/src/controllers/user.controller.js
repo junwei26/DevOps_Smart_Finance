@@ -35,7 +35,6 @@ exports.create = (req, res) => {
 
 // Find single user and update
 exports.findAndUpdate = (req, res) => {
-  // Todo: Use a variable username. For now, stick with constant
   if (!req.query.user) {
     return res.status(400).send({ message: "Username cannot be empty!" });
   }
