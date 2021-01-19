@@ -19,12 +19,12 @@ const Settings = () => {
       newPassword
     )}`;
     if (newPassword == repeatPassword) {
-      console.log(url);
+      setLoading(true);
       axios
         .get(url)
         .then(() => {
           loading = true;
-          setLoading(loading);
+          setLoading(false);
           alert("Details have been changed successfully!");
           loading = false;
         })
