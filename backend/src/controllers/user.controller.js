@@ -33,6 +33,32 @@ exports.create = (req, res) => {
     });
 };
 
+// Find single user and update
+exports.findAndUpdate = (req, res) => {
+  if (!req.query.user) {
+    return res.status(400).send({ message: "Username cannot be empty!" });
+  }
+  if (!req.query.pass) {
+    return res.status(400).send({ message: "Password cannot be empty!" });
+  }
+  currentUsername = req.query.currentUser;
+  const filter = { user: currentUsername };
+  const updateDoc = {
+    user: req.query.user,
+    pass: req.query.pass,
+  };
+  User.findOneAndUpdate(filter, updateDoc).then((data) => {
+    if (!data) {
+      res.status(500).send({ message: "Update unsuccessful!"});
+    } else {
+      res.status(200).send(data);
+    }
+  })
+  .catch((err) => {
+    res.status(400).send({ message: err.message || "Error retrieving User with username " + req.query.user });
+  });
+}
+
 // Find a single User with a username
 exports.findOne = (req, res) => {
   if (!req.query.user) {

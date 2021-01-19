@@ -9,5 +9,8 @@ module.exports = (app) => {
   // Retrieve a single User with username
   router.get("/", users.findOne);
 
+  // Find and update single User
+  router.get("/update", users.findAndUpdate);
+  
   app.use("/api/users", router);
 };
