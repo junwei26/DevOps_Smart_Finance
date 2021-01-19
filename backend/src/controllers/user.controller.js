@@ -42,8 +42,7 @@ exports.findAndUpdate = (req, res) => {
   if (!req.query.pass) {
     return res.status(400).send({ message: "Password cannot be empty!" });
   }
-  // currentUsername = "hi7";
-  currentUsername = req.body.user;
+  currentUsername = req.query.currentUser;
   const filter = { user: currentUsername };
   const updateDoc = {
     user: req.query.user,
