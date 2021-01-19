@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./index.scss";
-import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { UseAuthContext } from "../../authcontext";
+import PropTypes from "prop-types";
 
 const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -20,10 +20,8 @@ const authenticate = (email, password) => {
   return false;
 };
 
-const Login = () => {
+const Login = (props) => {
   const { setLogin } = UseAuthContext();
-  let history = useHistory();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -58,7 +56,7 @@ const Login = () => {
           onClick={() => {
             if (authenticate(email, password)) {
               setLogin(true);
-              history.push("/");
+              props.history.push("/");
             }
           }}
         >
@@ -67,6 +65,10 @@ const Login = () => {
       </Form>
     </div>
   );
+};
+
+Login.propTypes = {
+  history: PropTypes.object,
 };
 
 export default Login;
