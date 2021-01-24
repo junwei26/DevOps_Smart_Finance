@@ -3,10 +3,10 @@ import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 
 const NavBarButtons = () => {
-  const isLoggedIn = localStorage.getItem("currentUser");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   return (
     <Nav className="ml-auto">
-      {isLoggedIn ? (
+      {currentUser && currentUser.isLoggedIn ? (
         <>
           <Nav.Link as={Link} to="/accounts">
             Accounts
@@ -21,7 +21,7 @@ const NavBarButtons = () => {
             as={Link}
             to="/"
             onClick={() => {
-              localStorage.removeItem("currentUser");
+              localStorage.setItem("currentUser", JSON.stringify({ isLoggedIn: false, token: "" }));
               window.location.reload(false);
             }}
           >

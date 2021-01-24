@@ -3,8 +3,8 @@ import { Redirect, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ProtectedRoute = (props) => {
-  const isLoggedIn = localStorage.getItem("currentUser");
-  return isLoggedIn ? (
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  return currentUser && currentUser.isLoggedIn ? (
     <Route exact={props.exact} path={props.path} component={props.component} />
   ) : (
     <Redirect to="/" />

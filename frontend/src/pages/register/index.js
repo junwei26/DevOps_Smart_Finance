@@ -16,9 +16,8 @@ const authenticate = (email, password, confirmPassword) => {
   } else if (password != confirmPassword) {
     alert("Passwords mismatch!");
   } else {
-    return true;
+    localStorage.setItem("currentUser", JSON.stringify({ isLoggedIn: true, token: "" }));
   }
-  return false;
 };
 
 const Register = () => {
@@ -66,10 +65,8 @@ const Register = () => {
           size="lg"
           type="submit"
           onClick={() => {
-            if (authenticate(email, password, confirmPassword)) {
-              localStorage.setItem("currentUser", "test");
-              history.push("/");
-            }
+            authenticate(email, password, confirmPassword);
+            history.push("/");
           }}
         >
           Register

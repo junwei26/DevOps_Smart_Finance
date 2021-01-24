@@ -14,14 +14,11 @@ const authenticate = (email, password) => {
   } else if (password.length <= 0) {
     alert("Password cannot be empty!");
   } else {
-    return true;
+    localStorage.setItem("currentUser", JSON.stringify({ isLoggedIn: true, token: "" }));
   }
-  return false;
 };
-const user = "test";
 const Login = () => {
   let history = useHistory();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -54,11 +51,9 @@ const Login = () => {
           size="lg"
           type="submit"
           onClick={() => {
-            if (authenticate(email, password)) {
-              localStorage.setItem("currentUser", user);
-              history.push("/");
-              window.location.reload(false);
-            }
+            authenticate(email, password);
+            history.push("/");
+            window.location.reload(false);
           }}
         >
           Login
