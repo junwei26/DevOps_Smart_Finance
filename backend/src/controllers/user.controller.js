@@ -91,6 +91,7 @@ exports.findOne = (req, res) => {
     });
 };
 
+// Check if existing user and password exists
 exports.login = (req, res) => {
   if (!req.body.user) {
     console.log(req.body.user);
