@@ -42,31 +42,35 @@ exports.create = (req, res) => {
 
 // Find single user and update
 exports.findAndUpdate = (req, res) => {
-  if (!req.query.user) {
+  if (!req.body.user) {
     return res.status(400).send({ message: "Username cannot be empty!" });
   }
-  if (!req.query.pass) {
+  if (!req.body.pass) {
     return res.status(400).send({ message: "Password cannot be empty!" });
   }
-  const currentUsername = req.query.currentUser;
+  const currentUsername = req.body.currentUser;
   const filter = { user: currentUsername };
-  const updateDoc = {
-    user: req.query.user,
-    pass: req.query.pass,
-  };
-  User.findOneAndUpdate(filter, updateDoc)
-    .then((data) => {
-      if (!data) {
-        res.status(500).send({ message: "Update unsuccessful!" });
-      } else {
-        res.status(200).send(data);
-      }
-    })
-    .catch((err) => {
-      res
-        .status(400)
-        .send({ message: err.message || "Error retrieving User with username " + req.query.user });
+  bcrypt.hash(req.body.pass, saltRounds, (err, hash) => {
+    // Create a User
+    const updateDoc = new User({
+      user: req.body.user,
+      pass: hash,
     });
+
+    User.findOneAndUpdate(filter, updateDoc)
+      .then((data) => {
+        if (!data) {
+          res.status(500).send({ message: "Update unsuccessful!" });
+        } else {
+          res.status(200).send(data);
+        }
+      })
+      .catch((err) => {
+        res.status(400).send({
+          message: err.message || "Error retrieving User with username " + req.body.user,
+        });
+      });
+  });
 };
 
 // Find a single User with a username

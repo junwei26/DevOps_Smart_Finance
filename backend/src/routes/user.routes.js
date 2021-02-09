@@ -13,7 +13,7 @@ module.exports = (app) => {
   router.get("/", users.findOne);
 
   // Find and update single User
-  router.get("/update", users.findAndUpdate);
+  router.post("/update", users.findAndUpdate);
 
   app.use("/api/users", router);
 };
