@@ -6,6 +6,9 @@ exports.create = (req, res) => {
   if (!req.body.user) {
     return res.status(400).send({ message: "Username cannot be empty!" });
   }
+  if (!req.body.name) {
+    return res.status(400).send({ message: "Name cannot be empty!" });
+  }
   if (req.body.type === undefined) {
     return res.status(400).send({ message: "Type cannot be empty!" });
   }
@@ -18,6 +21,7 @@ exports.create = (req, res) => {
 
   const newAccount = {
     type: req.body.type,
+    name: req.body.name,
     amount: req.body.amount,
     budget: req.body.budget,
   };
