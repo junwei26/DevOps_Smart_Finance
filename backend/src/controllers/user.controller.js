@@ -50,26 +50,28 @@ exports.findAndUpdate = (req, res) => {
   }
   const currentUsername = req.body.currentUser;
   const filter = { user: currentUsername };
-  bcrypt.hash(req.body.pass, saltRounds, (err, hash) => {
-    // Create a User
-    const updateDoc = new User({
-      user: req.body.user,
-      pass: hash,
-    });
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    bcrypt.hash(req.body.pass, salt, (err, hash) => {
+      // Create a User
+      const updateDoc = {
+        user: req.body.user,
+        pass: hash,
+      };
 
-    User.findOneAndUpdate(filter, updateDoc)
-      .then((data) => {
-        if (!data) {
-          res.status(500).send({ message: "Update unsuccessful!" });
-        } else {
-          res.status(200).send(data);
-        }
-      })
-      .catch((err) => {
-        res.status(400).send({
-          message: err.message || "Error retrieving User with username " + req.body.user,
+      User.findOneAndUpdate(filter, updateDoc)
+        .then((data) => {
+          if (!data) {
+            res.status(500).send({ message: "Update unsuccessful!" });
+          } else {
+            res.status(200).send(data);
+          }
+        })
+        .catch((err) => {
+          res.status(400).send({
+            message: err.message || "Error retrieving User with username " + req.body.user,
+          });
         });
-      });
+    });
   });
 };
 
