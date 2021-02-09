@@ -121,7 +121,7 @@ exports.login = (req, res) => {
           });
         } else {
           return res.status(404).send({
-            message: err || "Error loggin in user " + req.body.user + ". Passwords mismatch.",
+            message: err || "Error logging in user " + req.body.user + ". Passwords mismatch.",
           });
         }
       });
