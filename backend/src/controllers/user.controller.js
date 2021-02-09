@@ -1,5 +1,8 @@
 const db = require("../models");
 const User = db.users;
+const bcrypt = require("bcrypt");
+
+const saltRounds = 10;
 
 // Create and save a new User
 exports.create = (req, res) => {
@@ -12,54 +15,63 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a User
-  const user = new User({
-    user: req.body.user,
-    pass: req.body.pass,
-    transactions: [],
-    accounts: [],
-  });
-
-  // Save User in the database
-  user
-    .save()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Error occurred while creating the User.",
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    bcrypt.hash(req.body.pass, salt, (err, hash) => {
+      // Create a User
+      const user = new User({
+        user: req.body.user,
+        pass: hash,
+        transactions: [],
+        accounts: [],
       });
+
+      // Save User in the database
+      user
+        .save()
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message: err.message || "Error occurred while creating the User.",
+          });
+        });
     });
+  });
 };
 
 // Find single user and update
 exports.findAndUpdate = (req, res) => {
-  if (!req.query.user) {
+  if (!req.body.user) {
     return res.status(400).send({ message: "Username cannot be empty!" });
   }
-  if (!req.query.pass) {
+  if (!req.body.pass) {
     return res.status(400).send({ message: "Password cannot be empty!" });
   }
-  const currentUsername = req.query.currentUser;
-  const filter = { user: currentUsername };
-  const updateDoc = {
-    user: req.query.user,
-    pass: req.query.pass,
-  };
-  User.findOneAndUpdate(filter, updateDoc)
-    .then((data) => {
-      if (!data) {
-        res.status(500).send({ message: "Update unsuccessful!" });
-      } else {
-        res.status(200).send(data);
-      }
-    })
-    .catch((err) => {
-      res
-        .status(400)
-        .send({ message: err.message || "Error retrieving User with username " + req.query.user });
+  const filter = { user: req.body.currentUser };
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    bcrypt.hash(req.body.pass, salt, (err, hash) => {
+      // Create a User
+      const updateDoc = {
+        user: req.body.user,
+        pass: hash,
+      };
+
+      User.findOneAndUpdate(filter, updateDoc)
+        .then((data) => {
+          if (!data) {
+            res.status(500).send({ message: "Update unsuccessful!" });
+          } else {
+            res.status(200).send(data);
+          }
+        })
+        .catch((err) => {
+          res.status(400).send({
+            message: err.message || "Error retrieving User with username " + req.body.user,
+          });
+        });
     });
+  });
 };
 
 // Find a single User with a username
@@ -80,6 +92,39 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Error retrieving User with username " + req.query.user,
+      });
+    });
+};
+
+// Check if existing user and password exists
+exports.login = (req, res) => {
+  if (!req.body.user) {
+    return res.status(400).send({ message: "Username cannot be empty!" });
+  }
+
+  let user = User.findOne({ user: req.body.user })
+    .then((data) => {
+      if (!data) {
+        return res
+          .status(404)
+          .send({ message: "User with username " + req.body.user + " not found." });
+      }
+      bcrypt.compare(req.body.pass, data.pass, (err, result) => {
+        if (result) {
+          return res.status(200).json({
+            status: "Success",
+            message: "Correct Details",
+            data: user,
+          });
+        }
+        return res.status(401).send({
+          message: err || "Error logging in user " + req.body.user + ". Passwords mismatch.",
+        });
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Error retrieving User with username " + req.body.user,
       });
     });
 };
