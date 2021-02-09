@@ -48,8 +48,7 @@ exports.findAndUpdate = (req, res) => {
   if (!req.body.pass) {
     return res.status(400).send({ message: "Password cannot be empty!" });
   }
-  const currentUsername = req.body.currentUser;
-  const filter = { user: currentUsername };
+  const filter = { user: req.body.currentUser };
   bcrypt.genSalt(saltRounds, function (err, salt) {
     bcrypt.hash(req.body.pass, salt, (err, hash) => {
       // Create a User
@@ -100,9 +99,7 @@ exports.findOne = (req, res) => {
 // Check if existing user and password exists
 exports.login = (req, res) => {
   if (!req.body.user) {
-    console.log(req.body.user);
-    res.status(400).send({ message: "Username cannot be empty!" });
-    return;
+    return res.status(400).send({ message: "Username cannot be empty!" });
   }
 
   let user = User.findOne({ user: req.body.user })
@@ -119,11 +116,10 @@ exports.login = (req, res) => {
             message: "Correct Details",
             data: user,
           });
-        } else {
-          return res.status(404).send({
-            message: err || "Error logging in user " + req.body.user + ". Passwords mismatch.",
-          });
         }
+        return res.status(401).send({
+          message: err || "Error logging in user " + req.body.user + ". Passwords mismatch.",
+        });
       });
     })
     .catch((err) => {
