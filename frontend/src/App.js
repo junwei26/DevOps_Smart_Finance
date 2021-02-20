@@ -7,6 +7,7 @@ import Register from "./pages/register";
 import Settings from "./pages/settings";
 import LandingPage from "./pages/landingpage";
 import AddWallets from "./pages/addwallets";
+import Analytics from "./pages/analytics";
 import { AuthContext } from "./authcontext";
 import NavBar from "./components/navBar";
 import ProtectedRoute from "./components/protectedroute";
@@ -24,6 +25,7 @@ const App = () => {
         <ProtectedRoute path="/settings" component={Settings} />
         <ProtectedRoute path="/accounts" component={Accounts} />
         <ProtectedRoute path="/addwallets" component={AddWallets} />
+        <ProtectedRoute path="/analytics" component={Analytics} />
       </Switch>
     </AuthContext.Provider>
   );
