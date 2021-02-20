@@ -25,6 +25,23 @@
   padding: 50;
 }
 
+.toggle-period > .dropdown-toggle {
+    border-radius: 0;
+}
+
 .toggle-period > .dropdown-toggle:after {
     content: none
+}
+
+.container-chart {
+    background-color: white;
+    padding-top: 40px;
+}
+
+.button-chevron-left {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.button-chevron-right.btn {
+    border-radius: 0 0.25rem 0.25rem 0;
 }

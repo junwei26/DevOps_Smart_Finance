@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import BarChart from "./barChart";
 import "./index.scss";
 import NavBar from "./navBar.js";
 
@@ -31,6 +32,7 @@ const timeOptions = [
 const Analytics = () => {
   const [chartOption, setChartOption] = useState("expense-income");
   const [timeOption, setTimeOption] = useState("yearly");
+  const [date, setDate] = useState(new Date());
 
   return (
     <div className="container-full-page flat">
@@ -42,7 +44,10 @@ const Analytics = () => {
         timeOption={timeOption}
         timeOptions={timeOptions}
         setTimeOption={setTimeOption}
+        date={date}
+        setDate={setDate}
       />
+      <BarChart timeOption={timeOption} date={date} />
     </div>
   );
 };
