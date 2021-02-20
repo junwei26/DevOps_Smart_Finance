@@ -27,7 +27,6 @@ const Settings = () => {
           alert("Details have been changed successfully!");
         })
         .catch((error) => {
-          console.log(error.response);
           if (error.response.status == 500) {
             alert("Please try another username!");
           } else {
