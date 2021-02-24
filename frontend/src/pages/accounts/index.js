@@ -1,7 +1,9 @@
 import React from "react";
 import "./index.scss";
+import { Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-const Accounts = () => {
+const Accounts = (props) => {
   return (
     <div className="container">
       <div className="title">Accounts</div>
@@ -13,15 +15,19 @@ const Accounts = () => {
       </div>
 
       <div className="amounts-container">
-        <h2 className="amounts-name-of-cca">Fintech Society</h2>
+        <h2 className="amounts-name-of-cca">Fintech</h2>
         <h2 className="amounts-budget-amount">1500</h2>
         <h2 className="amounts-savings-amount">$40</h2>
         <h2 className="amounts-type-of-amount"> wallet</h2>
       </div>
 
-      <div>
-        <button className="button-design">Add Wallet</button>
-      </div>
+      <Button
+        variant="btn btn-success"
+        className="button-design"
+        onClick={() => props.history.push("/addwallets")}
+      >
+        Add Wallet
+      </Button>
 
       <div className="total-container">
         <div className="total-sub-container">
@@ -35,6 +41,10 @@ const Accounts = () => {
       </div>
     </div>
   );
+};
+
+Accounts.propTypes = {
+  history: PropTypes.object,
 };
 
 export default Accounts;
