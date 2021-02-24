@@ -9,6 +9,7 @@ import Settings from "./pages/settings";
 import { AuthContext } from "./authcontext";
 import ProtectedRoute from "./components/protectedroute";
 import LandingPage from "./pages/landingpage";
+import Dashboard from "./pages/dashboard";
 
 const App = () => {
   const [isLoggedIn, setLogin] = useState(false);
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/" exact component={LandingPage} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
+        <Route path="/dashboard" exact component={Dashboard} />
         <ProtectedRoute path="/settings" component={Settings} />
         <ProtectedRoute path="/accounts" component={Accounts} />
       </Switch>
