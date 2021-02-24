@@ -26,6 +26,7 @@ module.exports = (mongoose) => {
       ],
       accounts: [
         {
+          name: String,
           amount: {
             type: Number,
             min: 0,

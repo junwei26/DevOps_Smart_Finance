@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./index.scss";
-import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import PropTypes from "prop-types";
 
 const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -20,8 +20,7 @@ const authenticate = (email, password, confirmPassword) => {
   }
 };
 
-const Register = () => {
-  let history = useHistory();
+const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -66,7 +65,7 @@ const Register = () => {
           type="submit"
           onClick={() => {
             authenticate(email, password, confirmPassword);
-            history.push("/");
+            props.history.push("/");
           }}
         >
           Register
@@ -74,6 +73,10 @@ const Register = () => {
       </Form>
     </div>
   );
+};
+
+Register.propTypes = {
+  history: PropTypes.object,
 };
 
 export default Register;

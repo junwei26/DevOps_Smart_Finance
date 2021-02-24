@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./index.scss";
-import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import PropTypes from "prop-types";
 
 const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -17,8 +17,7 @@ const authenticate = (email, password) => {
     localStorage.setItem("currentUser", JSON.stringify({ isLoggedIn: true, token: "" }));
   }
 };
-const Login = () => {
-  let history = useHistory();
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -52,7 +51,7 @@ const Login = () => {
           type="submit"
           onClick={() => {
             authenticate(email, password);
-            history.push("/");
+            props.history.push("/");
             window.location.reload(false);
           }}
         >
@@ -61,6 +60,10 @@ const Login = () => {
       </Form>
     </div>
   );
+};
+
+Login.propTypes = {
+  history: PropTypes.object,
 };
 
 export default Login;
