@@ -11,7 +11,7 @@ const AccountList = (props) => {
       {parsedAccList.map((acc) => (
         <tr key={acc.name}>
           <td>{acc.name}</td>
-          <td>{acc.amount}</td>
+          <td>${acc.amount}</td>
         </tr>
       ))}
     </tbody>
@@ -20,24 +20,23 @@ const AccountList = (props) => {
 
 const Dashboard = () => {
   const test = { name: "CCA", amount: 10 };
-  const [accounts, setAccounts] = useState([JSON.stringify(test), JSON.stringify(test)]);
+  const [accounts, setAccounts] = useState([JSON.stringify(test)]);
   const [cash, setCash] = useState(0);
 
   useEffect(() => {
     accountService.getAccounts().then((response) => {
-      setAccounts(response.data);
-      setCash(accounts.reduce((total, acc) => total + JSON.parse(acc).amount));
+      setAccounts(response.data.map((acc) => JSON.stringify(acc)));
+      setCash(response.data.map((acc) => acc.amount).reduce((total, curr) => total + curr));
     });
   }, []);
 
   return (
     <div className="container">
-      <div>{accounts}</div>
-      <Table striped bordered hover variant="dark">
+      <Table responsive striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>Cash</th>
-            <th>{cash}</th>
+            <th>${cash}</th>
           </tr>
         </thead>
         <AccountList accountList={accounts} />
