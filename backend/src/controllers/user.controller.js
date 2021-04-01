@@ -1,6 +1,7 @@
 const db = require("../models");
 const User = db.users;
 const bcrypt = require("bcrypt");
+const auth = require("../authentication/auth");
 
 const saltRounds = 10;
 
@@ -111,10 +112,12 @@ exports.login = (req, res) => {
       }
       bcrypt.compare(req.body.pass, data.pass, (err, result) => {
         if (result) {
+          const token = auth.generateToken({ user });
           return res.status(200).json({
             status: "Success",
             message: "Correct Details",
             data: user,
+            token: token,
           });
         }
         return res.status(401).send({

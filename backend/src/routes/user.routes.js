@@ -1,3 +1,5 @@
+const auth = require("../authentication/auth");
+
 module.exports = (app) => {
   const users = require("../controllers/user.controller.js");
 
@@ -10,10 +12,10 @@ module.exports = (app) => {
   router.post("/login", users.login);
 
   // Retrieve a single User with username
-  router.get("/", users.findOne);
+  router.get("/", auth.authenticateToken, users.findOne);
 
   // Find and update single User
-  router.post("/update", users.findAndUpdate);
+  router.post("/update", auth.authenticateToken, users.findAndUpdate);
 
   app.use("/api/users", router);
 };

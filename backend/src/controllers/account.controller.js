@@ -1,6 +1,7 @@
 const db = require("../models");
 const User = db.users;
 
+
 // Create a new Account for specified User
 exports.create = (req, res) => {
   if (!req.body.user) {

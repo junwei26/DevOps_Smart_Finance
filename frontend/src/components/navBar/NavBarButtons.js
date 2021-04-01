@@ -21,7 +21,7 @@ const NavBarButtons = () => {
             as={Link}
             to="/"
             onClick={() => {
-              localStorage.setItem("currentUser", JSON.stringify({ isLoggedIn: false, token: "" }));
+              localStorage.setItem("currentUser", JSON.stringify({ token: "" }));
               window.location.reload(false);
             }}
           >

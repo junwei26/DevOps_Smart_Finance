@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./index.scss";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import PropTypes from "prop-types";
-
+import axios from "axios";
+//import { Redirect } from "react-router-dom";
+axios.defaults.timeout = 5000;
 const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const authenticate = (email, password) => {
@@ -14,10 +15,20 @@ const authenticate = (email, password) => {
   } else if (password.length <= 0) {
     alert("Password cannot be empty!");
   } else {
-    localStorage.setItem("currentUser", JSON.stringify({ isLoggedIn: true, token: "" }));
+    //fetch request
+    axios
+      .post("http://localhost:8080/api/users/login", { user: email, pass: password })
+      .then((response) => {
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify({ isLoggedIn: true, token: response.token })
+        );
+        window.alert("in");
+      })
+      .catch((error) => window.alert(error));
   }
 };
-const Login = (props) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -51,8 +62,7 @@ const Login = (props) => {
           type="submit"
           onClick={() => {
             authenticate(email, password);
-            props.history.push("/");
-            window.location.reload(false);
+            // window.location.reload(false);
           }}
         >
           Login
@@ -60,10 +70,6 @@ const Login = (props) => {
       </Form>
     </div>
   );
-};
-
-Login.propTypes = {
-  history: PropTypes.object,
 };
 
 export default Login;
